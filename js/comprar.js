@@ -49,10 +49,15 @@ cards.forEach(function (card) {
     });
 });
 
+const precioIndividual = 5000;
+
+var select = document.getElementById("descuento");
+select.addEventListener("change", calcularPrecioTotal);
+
 function calcularDescuento(option) {
     switch (option) {
         case 'Estudiante':
-            return 0.8; 
+            return 0.2; 
         case 'Socio':
             return 0.65;
         case 'Standard':
@@ -61,8 +66,6 @@ function calcularDescuento(option) {
             return 1;
     }
 }
-
-const precioIndividual = 5000;
 
 function calcularPrecioTotal() {
     const tipoEntrada = document.getElementById('descuento');
