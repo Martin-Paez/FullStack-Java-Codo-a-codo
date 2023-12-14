@@ -17,7 +17,7 @@
 		<div class="text-center fs-3 my-4">Login</div>
 		
 		<div class="d-flex justify-content-center">
-			<form action="../controller/checkLogin.jsp" method="post">
+			<form class="d-flex" style="flex-direction:column" action="../controller/checkLogin.jsp" method="post">
 				<input type="email" name="user" class="form-control mb-3" placeholder="usuario" required>
 				<input type="password" name="pass" class="form-control mb-3" placeholder="contraseña" required>
 				<input type="submit" value="Enviar" class="btn btn-primary mb-3">

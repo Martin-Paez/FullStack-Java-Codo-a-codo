@@ -18,7 +18,7 @@
 	
 	if(rs.next()) {
 		if(rs.getString("rol").equals("admin")) {
-			response.sendRedirect("../view/listOra.jsp");	
+			response.sendRedirect("../view/listOra.jsp?id="+rs.getInt("id"));	
 		} else {
 			response.sendRedirect("../view/inicio.jsp?id="+rs.getInt("id"));
 		}
