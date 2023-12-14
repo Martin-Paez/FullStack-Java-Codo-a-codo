@@ -18,6 +18,22 @@
   </head>
   
   <body>
+  	<%
+	ConexionDB conex=new ConexionDB();
+	Statement st=conex.conectar();
+	ResultSet rs;
+
+	String id=request.getParameter("id");
+	String na=new String();
+	String foto=new String();
+	if(id!=null) {
+		
+		rs=st.executeQuery("SELECT * FROM usuarios WHERE id="+id);
+		rs.next();
+		na=rs.getString("nombre") + " "+ rs.getString("apellido");
+		foto="../images/" + rs.getString("fotoPerfil");
+	}		
+%>
   	<jsp:include page="menu.jsp"/>
 	<div class="container">
 		<div class="text-center fs-3 my-4">Listado Oradores</div>
@@ -104,7 +120,7 @@
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 	      <div class="modal-body">
-	        <form action="../controller/addOrador.jsp" method="post">
+	        <form action="../controller/addOrador.jsp?id=<% out.print(id); %>" method="post">
 	          <div class="mb-3 text-center">
 	            <input type="text" class="form-control mb-3" id="nomAdd" name="nomAdd" placeholder="Nombre">
 	            <input type="text" class="form-control mb-3" id="apeAdd" name="apeAdd" placeholder="Apellido">
@@ -132,7 +148,7 @@
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 	      <div class="modal-body">
-	        <form action="../controller/updOrador.jsp" method="post">
+	        <form action="../controller/updOrador.jsp?id=<% out.print(id); %>" method="post">
 	          <div class="mb-3 text-center">
 	            <input type="hidden" class="form-control mb-3" id="idUpd" name=idUpd>
 	            <input type="text" class="form-control mb-3" id="nom" name="nom">
@@ -158,10 +174,10 @@
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 	      <div class="modal-body">
-	        <form action="../controller/delOrador.jsp" method="post">
+	        <form action="../controller/delOrador.jsp?id=<% out.print(id); %>" method="post">
 	          <div class="mb-3 text-center">
 	            <label for="recipient-name" class="col-form-label">¿Desea eleminar el orador?</label>
-	            <input type="hidden" class="form-control" id="recipient-name" name="id">
+	            <input type="hidden" class="form-control" id="recipient-name" name="idDel">
 	          </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
